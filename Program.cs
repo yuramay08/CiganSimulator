@@ -1,22 +1,19 @@
 ﻿using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.Common;
 using OpenTK.Graphics.OpenGL4;
+using OpenTK.Windowing.GraphicsLibraryFramework;
 using System;
 
-class Program
+namespace CiganSimulator
 {
-    static void Main()
+    class Program
     {
-        var settings = new GameWindowSettings();
-        var nativeSettings = new NativeWindowSettings()
+        static void Main()
         {
-            Size = new OpenTK.Mathematics.Vector2i(800, 600),   //resoultion of window
-            Title = "Cigan Simulator"                           //title
-        };
-
-        using (var window = new GameWindow(settings, nativeSettings))
-        {
-            window.Run();
+            using (Game game = new Game(800, 600, "LearnOpenTK"))
+            {
+                game.Run();
+            }
         }
     }
 }
