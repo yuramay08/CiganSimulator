@@ -10,9 +10,10 @@ namespace CiganSimulator
     {
         static void Main()
         {
-            using (Game game = new Game(800, 600, "LearnOpenTK"))
+            using (Game game = new Game(800, 600, "LearnOpenTK")) //res of game window
             {
                 game.Run();
+                
             }
         }
     }
