@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "3Ih0R5piqdc=",
   "success": true,
   "projectFilePath": "c:\\Users\\Pato\\Downloads\\CiganSimulator\\CiganSimulator.csproj",
-=======
-  "dgSpecHash": "OzTxWNeBpz8=",
-  "success": true,
-  "projectFilePath": "C:\\Programovanie\\ROO\\CiganSimulator\\CiganSimulator.csproj",
->>>>>>> d734e39523d958cd38044a66d502864f3b5d4d8e
   "expectedPackageFiles": [
     "C:\\Users\\Pato\\.nuget\\packages\\opentk\\4.9.3\\opentk.4.9.3.nupkg.sha512",
     "C:\\Users\\Pato\\.nuget\\packages\\opentk.audio.openal\\4.9.3\\opentk.audio.openal.4.9.3.nupkg.sha512",

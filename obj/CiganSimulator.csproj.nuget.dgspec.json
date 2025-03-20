@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "c:\\Users\\Pato\\Downloads\\CiganSimulator\\CiganSimulator.csproj": {}
   },
   "projects": {
@@ -13,19 +12,6 @@
         "projectPath": "c:\\Users\\Pato\\Downloads\\CiganSimulator\\CiganSimulator.csproj",
         "packagesPath": "C:\\Users\\Pato\\.nuget\\packages\\",
         "outputPath": "c:\\Users\\Pato\\Downloads\\CiganSimulator\\obj\\",
-=======
-    "C:\\Programovanie\\ROO\\CiganSimulator\\CiganSimulator.csproj": {}
-  },
-  "projects": {
-    "C:\\Programovanie\\ROO\\CiganSimulator\\CiganSimulator.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Programovanie\\ROO\\CiganSimulator\\CiganSimulator.csproj",
-        "projectName": "CiganSimulator",
-        "projectPath": "C:\\Programovanie\\ROO\\CiganSimulator\\CiganSimulator.csproj",
-        "packagesPath": "C:\\Users\\yuram\\.nuget\\packages\\",
-        "outputPath": "C:\\Programovanie\\ROO\\CiganSimulator\\obj\\",
->>>>>>> d734e39523d958cd38044a66d502864f3b5d4d8e
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Pato\\AppData\\Roaming\\NuGet\\NuGet.Config",
