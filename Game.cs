@@ -16,7 +16,7 @@ namespace CiganSimulator
         private float moveSpeedR = 0f;
         private float moveSpeedL = 0f;
         private float maxSpeed = 20.0f;
-        private float moveAcceleration = 0.01f;
+        private float moveAcceleration = 0.015f;
         private float jumpForce = 10f;
 
         private int shaderProgram;
