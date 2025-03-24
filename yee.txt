@@ -1,0 +1,61 @@
+using OpenTK.Windowing.Desktop;
+using OpenTK.Windowing.Common;
+using OpenTK.Graphics.OpenGL4;
+using OpenTK.Windowing.GraphicsLibraryFramework;
+using System;
+using System.Numerics;
+
+namespace CiganSimulator
+{
+    class Platforms
+    {
+        public int x;
+        public int y;
+        private int width;
+        private int height;
+        Vector2 playerSpawnPoint;
+        Vector2 mapVelocity; //XD
+        
+        public Platforms(int x, int y, Vector2 playerSpawnPoint)
+        {
+            this.x = x;
+            this.y = y;
+            this.playerSpawnPoint = playerSpawnPoint;
+        }
+        public Vector2 GetPlayerSpawnPoint()
+        {
+            return playerSpawnPoint;
+        }
+        public Vector2 GetMapVelocity()
+        {
+            return mapVelocity;
+        }
+
+        private void MoveMap(Vector2 playerPosition, Vector2 playerVelocity, float maxSpeed, int windowWidth, int windowHeight)
+        {
+            if(x >= 0)
+            {
+                mapVelocity.X = 0;
+                Console.WriteLine("Map is at the start");
+            }
+            else if(x <= width + windowWidth)
+            {
+                mapVelocity.X = 0;
+                Console.WriteLine("Map is at the end");
+            }
+            else if (playerPosition.X >= windowWidth * 2 / 3)
+            {
+                
+                mapVelocity.X = -playerVelocity.X;
+
+                //send stop player
+            }
+            
+        }
+
+    }
+    class Platform
+    {
+
+    }
+}

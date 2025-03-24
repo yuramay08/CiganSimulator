@@ -1,33 +1,7 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "c:\\Programovanie\\ROO\\CiganSimulator\\CiganSimulator.csproj": {}
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    "c:\\Programovanie\\ROO\\CiganSimulator\\CiganSimulator.csproj": {}
-=======
-<<<<<<< HEAD
->>>>>>> fe7522cbbbe15874926a7b9e28e54ee78fbe29c0
-    "c:\\Users\\Pato\\Downloads\\CiganSimulator\\CiganSimulator.csproj": {}
-  },
-  "projects": {
-    "c:\\Users\\Pato\\Downloads\\CiganSimulator\\CiganSimulator.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "c:\\Users\\Pato\\Downloads\\CiganSimulator\\CiganSimulator.csproj",
-        "projectName": "CiganSimulator",
-        "projectPath": "c:\\Users\\Pato\\Downloads\\CiganSimulator\\CiganSimulator.csproj",
-        "packagesPath": "C:\\Users\\Pato\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Pato\\Downloads\\CiganSimulator\\obj\\",
-<<<<<<< HEAD
-=======
-=======
-    "C:\\Programovanie\\ROO\\CiganSimulator\\CiganSimulator.csproj": {}
->>>>>>> da6e9221a68eebcf61fb748c1eb79bb1ab035fb9
->>>>>>> 640d332ea23d4b0a3dbf26c211f404243da1c01a
   },
   "projects": {
     "c:\\Programovanie\\ROO\\CiganSimulator\\CiganSimulator.csproj": {
@@ -38,14 +12,6 @@
         "projectPath": "c:\\Programovanie\\ROO\\CiganSimulator\\CiganSimulator.csproj",
         "packagesPath": "C:\\Users\\yuram\\.nuget\\packages\\",
         "outputPath": "c:\\Programovanie\\ROO\\CiganSimulator\\obj\\",
-<<<<<<< HEAD
-=======
-=======
-        "outputPath": "C:\\Programovanie\\ROO\\CiganSimulator\\obj\\",
->>>>>>> d734e39523d958cd38044a66d502864f3b5d4d8e
->>>>>>> da6e9221a68eebcf61fb748c1eb79bb1ab035fb9
->>>>>>> fe7522cbbbe15874926a7b9e28e54ee78fbe29c0
->>>>>>> 640d332ea23d4b0a3dbf26c211f404243da1c01a
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

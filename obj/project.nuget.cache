@@ -1,32 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "G4pqcuOnUUg=",
   "success": true,
   "projectFilePath": "c:\\Programovanie\\ROO\\CiganSimulator\\CiganSimulator.csproj",
-=======
-<<<<<<< HEAD
-  "dgSpecHash": "3Ih0R5piqdc=",
-  "success": true,
-  "projectFilePath": "c:\\Users\\Pato\\Downloads\\CiganSimulator\\CiganSimulator.csproj",
-=======
-<<<<<<< HEAD
-  "dgSpecHash": "G4pqcuOnUUg=",
-  "success": true,
-  "projectFilePath": "c:\\Programovanie\\ROO\\CiganSimulator\\CiganSimulator.csproj",
-=======
-<<<<<<< HEAD
-  "dgSpecHash": "3Ih0R5piqdc=",
-  "success": true,
-  "projectFilePath": "c:\\Users\\Pato\\Downloads\\CiganSimulator\\CiganSimulator.csproj",
-=======
-  "dgSpecHash": "OzTxWNeBpz8=",
-  "success": true,
-  "projectFilePath": "C:\\Programovanie\\ROO\\CiganSimulator\\CiganSimulator.csproj",
->>>>>>> d734e39523d958cd38044a66d502864f3b5d4d8e
->>>>>>> da6e9221a68eebcf61fb748c1eb79bb1ab035fb9
->>>>>>> fe7522cbbbe15874926a7b9e28e54ee78fbe29c0
->>>>>>> 640d332ea23d4b0a3dbf26c211f404243da1c01a
   "expectedPackageFiles": [
     "C:\\Users\\yuram\\.nuget\\packages\\opentk\\4.9.3\\opentk.4.9.3.nupkg.sha512",
     "C:\\Users\\yuram\\.nuget\\packages\\opentk.audio.openal\\4.9.3\\opentk.audio.openal.4.9.3.nupkg.sha512",
@@ -41,12 +17,5 @@
     "C:\\Users\\yuram\\.nuget\\packages\\opentk.windowing.graphicslibraryframework\\4.9.3\\opentk.windowing.graphicslibraryframework.4.9.3.nupkg.sha512",
     "C:\\Users\\yuram\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file c:\\Programovanie\\ROO\\CiganSimulator\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
