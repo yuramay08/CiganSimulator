@@ -68,7 +68,7 @@ namespace CiganSimulator
             level2.AddPlatform(new Platform(4, -4, 2, 1));
             level2.AddPlatform(new Platform(6, -4, 2, 1));
             
-            Level level3 = new Level("L3");
+            Level level3 = new Level("L3", 50f, 20f);
             level3.AddPlatform(new Platform(-3, -3, 3, 1));
             level3.AddPlatform(new Platform(1, -1, 2, 1));
             level3.AddPlatform(new Platform(4, 1, 3, 1));

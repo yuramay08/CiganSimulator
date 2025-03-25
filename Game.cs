@@ -16,16 +16,9 @@ namespace CiganSimulator
         private bool isGrounded = false;
         private float moveSpeedR = 0f;
         private float moveSpeedL = 0f;
-<<<<<<< HEAD
         private float maxSpeed = 10.0f;
         private float moveAcceleration = 0.01f;
         private float jumpForce = 6.5f;
-=======
-        private float maxSpeed = 20.0f;
-        private float moveAcceleration = 0.015f;
-        private float jumpForce = 8.5f;
->>>>>>> 349b9b027d0b5f09b71f940154146178ce67de22
-
         private LevelManager levelManager;
         private Map map;
         private int shaderProgram;

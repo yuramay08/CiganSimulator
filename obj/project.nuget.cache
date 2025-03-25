@@ -1,27 +1,28 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "G4pqcuOnUUg=",
   "success": true,
   "projectFilePath": "c:\\Programovanie\\ROO\\CiganSimulator\\CiganSimulator.csproj",
-=======
-  "dgSpecHash": "3Ih0R5piqdc=",
-  "success": true,
-  "projectFilePath": "c:\\Users\\Pato\\Downloads\\CiganSimulator\\CiganSimulator.csproj",
->>>>>>> 349b9b027d0b5f09b71f940154146178ce67de22
   "expectedPackageFiles": [
-    "C:\\Users\\Pato\\.nuget\\packages\\opentk\\4.9.3\\opentk.4.9.3.nupkg.sha512",
-    "C:\\Users\\Pato\\.nuget\\packages\\opentk.audio.openal\\4.9.3\\opentk.audio.openal.4.9.3.nupkg.sha512",
-    "C:\\Users\\Pato\\.nuget\\packages\\opentk.compute\\4.9.3\\opentk.compute.4.9.3.nupkg.sha512",
-    "C:\\Users\\Pato\\.nuget\\packages\\opentk.core\\4.9.3\\opentk.core.4.9.3.nupkg.sha512",
-    "C:\\Users\\Pato\\.nuget\\packages\\opentk.graphics\\4.9.3\\opentk.graphics.4.9.3.nupkg.sha512",
-    "C:\\Users\\Pato\\.nuget\\packages\\opentk.input\\4.9.3\\opentk.input.4.9.3.nupkg.sha512",
-    "C:\\Users\\Pato\\.nuget\\packages\\opentk.mathematics\\4.9.3\\opentk.mathematics.4.9.3.nupkg.sha512",
-    "C:\\Users\\Pato\\.nuget\\packages\\opentk.redist.glfw\\3.3.8.39\\opentk.redist.glfw.3.3.8.39.nupkg.sha512",
-    "C:\\Users\\Pato\\.nuget\\packages\\opentk.windowing.common\\4.9.3\\opentk.windowing.common.4.9.3.nupkg.sha512",
-    "C:\\Users\\Pato\\.nuget\\packages\\opentk.windowing.desktop\\4.9.3\\opentk.windowing.desktop.4.9.3.nupkg.sha512",
-    "C:\\Users\\Pato\\.nuget\\packages\\opentk.windowing.graphicslibraryframework\\4.9.3\\opentk.windowing.graphicslibraryframework.4.9.3.nupkg.sha512",
-    "C:\\Users\\Pato\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    "C:\\Users\\yuram\\.nuget\\packages\\opentk\\4.9.3\\opentk.4.9.3.nupkg.sha512",
+    "C:\\Users\\yuram\\.nuget\\packages\\opentk.audio.openal\\4.9.3\\opentk.audio.openal.4.9.3.nupkg.sha512",
+    "C:\\Users\\yuram\\.nuget\\packages\\opentk.compute\\4.9.3\\opentk.compute.4.9.3.nupkg.sha512",
+    "C:\\Users\\yuram\\.nuget\\packages\\opentk.core\\4.9.3\\opentk.core.4.9.3.nupkg.sha512",
+    "C:\\Users\\yuram\\.nuget\\packages\\opentk.graphics\\4.9.3\\opentk.graphics.4.9.3.nupkg.sha512",
+    "C:\\Users\\yuram\\.nuget\\packages\\opentk.input\\4.9.3\\opentk.input.4.9.3.nupkg.sha512",
+    "C:\\Users\\yuram\\.nuget\\packages\\opentk.mathematics\\4.9.3\\opentk.mathematics.4.9.3.nupkg.sha512",
+    "C:\\Users\\yuram\\.nuget\\packages\\opentk.redist.glfw\\3.3.8.39\\opentk.redist.glfw.3.3.8.39.nupkg.sha512",
+    "C:\\Users\\yuram\\.nuget\\packages\\opentk.windowing.common\\4.9.3\\opentk.windowing.common.4.9.3.nupkg.sha512",
+    "C:\\Users\\yuram\\.nuget\\packages\\opentk.windowing.desktop\\4.9.3\\opentk.windowing.desktop.4.9.3.nupkg.sha512",
+    "C:\\Users\\yuram\\.nuget\\packages\\opentk.windowing.graphicslibraryframework\\4.9.3\\opentk.windowing.graphicslibraryframework.4.9.3.nupkg.sha512",
+    "C:\\Users\\yuram\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file c:\\Programovanie\\ROO\\CiganSimulator\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

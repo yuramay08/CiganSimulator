@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CiganSimulator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1aab266d3d8746b53df297a7a3ca7caecb6f3e39")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+94a084e4d9107700c4db4b107adfafc717206d9b")]
 [assembly: System.Reflection.AssemblyProductAttribute("CiganSimulator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CiganSimulator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
