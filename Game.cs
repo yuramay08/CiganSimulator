@@ -18,7 +18,7 @@ namespace CiganSimulator
         private float moveSpeedL = 0f;
         private float maxSpeed = 20.0f;
         private float moveAcceleration = 0.015f;
-        private float jumpForce = 7.5f;
+        private float jumpForce = 8.5f;
 
         private LevelManager levelManager;
         private Map map;        
@@ -153,6 +153,14 @@ namespace CiganSimulator
             // Gravity
             playerVelocity.Y += gravity * (float)args.Time;
             playerPosition += playerVelocity * (float)args.Time;
+
+            //goofy collision for every platform
+            foreach (var platform in levelManager.CurrentLevel.Platforms)
+            {
+                // Convert player position and size to System.Numerics.Vector2 before calling the collision check
+                OpenTK.Mathematics.Vector2 playerSize = new OpenTK.Mathematics.Vector2(1.0f, 1.0f);
+                platform.IsCollidingWithPlayer(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics(), ref playerVelocity);
+            }
 
             // Ground collision
             if (playerPosition.Y <= -4.5f)
