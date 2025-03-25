@@ -4,6 +4,7 @@ using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
 using System;
+using System.Diagnostics;
 
 namespace CiganSimulator
 {
@@ -13,7 +14,7 @@ namespace CiganSimulator
         private Vector2 playerPosition;
         private Vector2 playerVelocity;
         private float gravity = -9.80665f * 1.2f;
-        private bool isGrounded = false;
+        public bool isGrounded = false;
         private float moveSpeedR = 0f;
         private float moveSpeedL = 0f;
         private float maxSpeed = 10.0f;
@@ -139,8 +140,6 @@ namespace CiganSimulator
                 if (moveSpeedR < 0) moveSpeedR = 0;
             }
 
-            // Apply horizontal movement
-            playerPosition.X += (moveSpeedR - moveSpeedL) * (float)args.Time;
 
             // Jump
             if (input.IsKeyDown(Keys.Up) && isGrounded)
@@ -149,17 +148,46 @@ namespace CiganSimulator
                 isGrounded = false;
             }
 
-            // Gravity
-            playerVelocity.Y += gravity * (float)args.Time;
-            playerPosition += playerVelocity * (float)args.Time;
-
+            
+            
             //goofy collision for every platform
             foreach (var platform in levelManager.CurrentLevel.Platforms)
             {
                 // Convert player position and size to System.Numerics.Vector2 before calling the collision check
                 OpenTK.Mathematics.Vector2 playerSize = new OpenTK.Mathematics.Vector2(1.0f, 1.0f);
-                platform.IsCollidingWithPlayer(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics(), ref playerVelocity);
+                if(
+                    platform.IsCollidingWithPlayer(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics())
+                    )
+                {
+                    if(platform.IsCollidingWithPlayerFromSide(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics(), ref playerPosition))
+                    {
+                        playerVelocity.X = 0;
+                        moveSpeedL = 0;
+                        moveSpeedR = 0;
+                        Debug.WriteLine("Side collision");
+                    }
+                    else if(platform.IsCollidingWithPlayerOnTop(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics(), ref playerPosition))
+                    {
+                        isGrounded = true;
+                        playerVelocity.Y = 0;
+                        
+                    }
+                    else if(platform.IsCollidingWithPlayerFromBottom(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics(), ref playerPosition))
+                    {
+                        
+                        
+                        playerVelocity.Y = 0;
+                    }
+                    
+                }
             }
+            
+            // Apply horizontal movement
+            playerPosition.X += (moveSpeedR - moveSpeedL) * (float)args.Time;
+            // Gravity
+            
+            playerPosition += playerVelocity * (float)args.Time;
+            playerVelocity.Y += gravity * (float)args.Time;
 
             // Ground collision
             if (playerPosition.Y <= -4.5f)

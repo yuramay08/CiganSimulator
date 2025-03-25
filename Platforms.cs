@@ -4,13 +4,13 @@ namespace CiganSimulator
 {
     public class Platform
     {
-        public int x;
-        public int y;
+        public float x;
+        public float y;
         public float width;
         public float height;
         private Vector2 mapVelocity;
 
-        public Platform(int x, int y, float width, float height)
+        public Platform(float x, float y, float width, float height)
         {
             this.x = x;
             this.y = y;
@@ -25,18 +25,63 @@ namespace CiganSimulator
         }
 
         //goofy collision
-        public bool IsCollidingWithPlayer(Vector2 playerPos, Vector2 playerSize, ref OpenTK.Mathematics.Vector2 playerVelocity)
+        public bool IsCollidingWithPlayer(Vector2 playerPos, Vector2 playerSize)
         {
-            // Check for collision in the horizontal (X) and vertical (Y) axis
-            if (playerPos.X + playerSize.X > x && playerPos.X < x + width) // X overlap
+            float halfPlayerW = playerSize.X * 0.5f;
+            float halfPlayerH = playerSize.Y * 0.5f;
+
+            float halfPlatformW = width * 0.5f;
+            float halfPlatformH = height * 0.5f;
+
+            // Check horizontal overlap
+            bool xOverlap = (playerPos.X + halfPlayerW > x - halfPlatformW) &&
+                            (playerPos.X - halfPlayerW < x + halfPlatformW);
+
+            // Check vertical overlap
+            bool yOverlap = (playerPos.Y + halfPlayerH > y - halfPlatformH) &&
+                            (playerPos.Y - halfPlayerH < y + halfPlatformH);
+
+            return xOverlap && yOverlap;
+        }
+        public bool IsCollidingWithPlayerOnTop(Vector2 playerPos, Vector2 playerSize, ref OpenTK.Mathematics.Vector2 playerPosition)
+        {
+            //use after IsCollidingWithPlayer return true
+            float halfPlayerW = playerSize.X * 0.5f;
+            float halfPlayerH = playerSize.Y * 0.5f;
+            if(playerPos.Y - halfPlayerH >= y - height * 0.25f)//reserve pre rychle padanie
             {
-                if (playerPos.Y + playerSize.Y > y && playerPos.Y + playerSize.Y <= y + height) // Y overlap (falling)
-                {
-                    // Player collides with platform from above (falling)
-                    playerPos.Y = y - playerSize.Y; // Adjust player position to be on top of the platform
-                    playerVelocity.Y = 0; // Stop vertical downward movement
-                    return true;
-                }
+                playerPosition.Y = y + height * 0.5f + halfPlayerH;
+                return true;
+            }
+            return false;
+        }
+        public bool IsCollidingWithPlayerFromBottom(Vector2 playerPos, Vector2 playerSize,  ref OpenTK.Mathematics.Vector2 playerPosition)
+        {
+            //use after IsCollidingWithPlayer return true
+            float halfPlayerW = playerSize.X * 0.5f;
+            float halfPlayerH = playerSize.Y * 0.5f;
+            if(playerPos.Y + halfPlayerH >= y - height * 0.25f)//reserve pre rychle padanie
+            {
+                playerPosition.Y = y - height * 0.5f - halfPlayerH;
+                return true;
+            }
+            return false;
+        }
+        public bool IsCollidingWithPlayerFromSide(Vector2 playerPos, Vector2 playerSize,  ref OpenTK.Mathematics.Vector2 playerPosition)
+        {
+            //use after IsCollidingWithPlayer return true
+            float halfPlayerW = playerSize.X * 0.5f;
+            float halfPlayerH = playerSize.Y * 0.5f;
+            if(playerPos.X - halfPlayerW >= x + width * 0.48f)//reserve pre rychle padanie
+            {
+                
+                playerPosition.X = x + width * 0.5f + halfPlayerH;
+                return true;
+            }
+            else if(playerPos.X + halfPlayerW <= x - width * 0.48f)//reserve pre rychle padanie
+            {
+                playerPosition.X = x - width * 0.5f - halfPlayerH;
+                return true;
             }
             return false;
         }

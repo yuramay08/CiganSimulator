@@ -60,7 +60,7 @@ namespace CiganSimulator
 
             // Level 1: 20x10 world units, for instance
             Level level1 = new Level("L1", 40f, 10f);
-            level1.AddPlatform(new Platform(-2, -4, 2, 1));
+            level1.AddPlatform(new Platform(-2, -2.0f, 2, 1));
             level1.AddPlatform(new Platform(2, -4, 1, 0.5f));
 
             // Level 2: 30x8 world units
