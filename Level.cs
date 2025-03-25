@@ -67,9 +67,15 @@ namespace CiganSimulator
             Level level2 = new Level("L2", 30f, 10f);
             level2.AddPlatform(new Platform(4, -4, 2, 1));
             level2.AddPlatform(new Platform(6, -4, 2, 1));
+            
+            Level level3 = new Level("L3");
+            level3.AddPlatform(new Platform(-3, -3, 3, 1));
+            level3.AddPlatform(new Platform(1, -1, 2, 1));
+            level3.AddPlatform(new Platform(4, 1, 3, 1));
 
             levelManager.AddLevel(level1);
             levelManager.AddLevel(level2);
+            levelManager.AddLevel(level3);
             levelManager.SelectLevel("L1");
             return levelManager;
         }
