@@ -10,7 +10,7 @@ namespace CiganSimulator
     {
         static void Main()
         {
-            using (Game game = new Game(800, 600, "Kradnut Zelezo", "L1")) //res of game window
+            using (Game game = new Game(800, 600, "Kradnut Zelezo", "L2")) //res of game window
             {
                 game.Run();
                 

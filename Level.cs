@@ -9,10 +9,14 @@ namespace CiganSimulator
     {
         public string LevelName { get; private set; }
         public List<Platform> Platforms { get; private set; }
+        public float Width { get; }
+        public float Height { get; }
 
-        public Level(string levelName)
+        public Level(string name, float width, float height)
         {
-            LevelName = levelName;
+            LevelName = name;
+            Width = width;
+            Height = height;
             Platforms = new List<Platform>();
         }
 
@@ -52,23 +56,21 @@ namespace CiganSimulator
     {
         public static LevelManager CreateLevelManager()
         {
-            // Instantiate level manager
-            LevelManager levelManager = new LevelManager();
+            var levelManager = new LevelManager();
 
-            // Define your levels
-            Level level1 = new Level("L1");
+            // Level 1: 20x10 world units, for instance
+            Level level1 = new Level("L1", 40f, 10f);
             level1.AddPlatform(new Platform(-2, -4, 2, 1));
-            level1.AddPlatform(new Platform(2, -4, 2, 1));
+            level1.AddPlatform(new Platform(2, -4, 1, 0.5f));
 
-            Level level2 = new Level("L2");
+            // Level 2: 30x8 world units
+            Level level2 = new Level("L2", 30f, 10f);
             level2.AddPlatform(new Platform(4, -4, 2, 1));
             level2.AddPlatform(new Platform(6, -4, 2, 1));
 
-            // Add them and pick the active one
             levelManager.AddLevel(level1);
             levelManager.AddLevel(level2);
             levelManager.SelectLevel("L1");
-
             return levelManager;
         }
     }

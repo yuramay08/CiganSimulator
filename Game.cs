@@ -16,12 +16,12 @@ namespace CiganSimulator
         private bool isGrounded = false;
         private float moveSpeedR = 0f;
         private float moveSpeedL = 0f;
-        private float maxSpeed = 20.0f;
-        private float moveAcceleration = 0.015f;
-        private float jumpForce = 7.5f;
+        private float maxSpeed = 10.0f;
+        private float moveAcceleration = 0.01f;
+        private float jumpForce = 6.5f;
 
         private LevelManager levelManager;
-        private Map map;        
+        private Map map;
         private int shaderProgram;
         private int playerVAO;
         private int playerVBO;
@@ -36,10 +36,10 @@ namespace CiganSimulator
             Size = (width, height),
             Title = title
         })
-    {
-        playerPosition = Vector2.Zero;
-        initialLevel = startLevel;
-    }
+        {
+            playerPosition = new Vector2(-6.0f + -1.0f / 6.0f, -4.5f);//down left side of the screen if 800*600
+            initialLevel = startLevel;
+        }
 
         protected override void OnLoad()
         {
@@ -66,7 +66,7 @@ namespace CiganSimulator
                 out vec4 FragColor;
                 void main()
                 {
-                    FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+                    FragColor = vec4(1.0, 1.0, 0.0, 1.0);//dos colores
                 }
             ";
 
@@ -131,12 +131,12 @@ namespace CiganSimulator
             }
             if (!input.IsKeyDown(Keys.Left))
             {
-                moveSpeedL -= moveAcceleration * 1.5f;
+                moveSpeedL -= moveAcceleration * 1f;
                 if (moveSpeedL < 0) moveSpeedL = 0;
             }
             if (!input.IsKeyDown(Keys.Right))
             {
-                moveSpeedR -= moveAcceleration * 1.5f;
+                moveSpeedR -= moveAcceleration * 1f;
                 if (moveSpeedR < 0) moveSpeedR = 0;
             }
 
