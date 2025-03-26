@@ -117,7 +117,7 @@ namespace CiganSimulator
 
             // Instantiate level manager and levels
             levelManager = LevelSetup.CreateLevelManager();
-            levelManager.SelectLevel(initialLevel);
+            levelManager.SelectLevel(initialLevel, ref playerPosition);
 
             // Simple map for demonstration
             map = new Map(shaderProgram, positionUniformLocation);
@@ -157,9 +157,7 @@ namespace CiganSimulator
             {
                 // Convert player position and size to System.Numerics.Vector2 before calling the collision check
                 OpenTK.Mathematics.Vector2 playerSize = new OpenTK.Mathematics.Vector2(1.0f, 1.0f);
-                if(
-                    platform.IsCollidingWithPlayer(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics())
-                    )
+                if (platform.IsCollidingWithPlayer(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics()))
                 {
                     if(platform.IsCollidingWithPlayerFromSide(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics(), ref playerPosition))
                     {
@@ -205,11 +203,14 @@ namespace CiganSimulator
             // Switch levels with F1/F2/F3 for demo
             if (input.IsKeyPressed(Keys.F1))
             {
-                levelManager.SelectLevel("L1");
+                levelManager.SelectLevel("L1", ref playerPosition);
             }
             if (input.IsKeyPressed(Keys.F2))
             {
-                levelManager.SelectLevel("L2");
+                levelManager.SelectLevel("L2", ref playerPosition);
+            }
+            if (input.IsKeyPressed(Keys.F3)) {
+                levelManager.SelectLevel("L3", ref playerPosition);
             }
             if (input.IsKeyPressed(Keys.F3))
             {
