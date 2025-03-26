@@ -212,10 +212,6 @@ namespace CiganSimulator
             if (input.IsKeyPressed(Keys.F3)) {
                 levelManager.SelectLevel("L3", ref playerPosition);
             }
-            if (input.IsKeyPressed(Keys.F3))
-            {
-                levelManager.SelectLevel("L3");
-            }
             
             // Update map
             map.Update(Misc.ToSystemNumerics(playerPosition), Misc.ToSystemNumerics(playerVelocity));

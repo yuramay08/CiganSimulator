@@ -61,21 +61,21 @@ namespace CiganSimulator
             var levelManager = new LevelManager();
 
             // Level 1: 20x10 world units, for instance
-<<<<<<< HEAD
-            Level level1 = new Level("L1", 40f, 10f, new Vector2(40, 20));
+
+            Level level1 = new Level("L1", 40f, 10f, Vector2.Zero);
             level1.AddPlatform(new Platform(-2, -2.5f, 2, 1));
-=======
-            Level level1 = new Level("L1", 40f, 10f);
->>>>>>> a3b04ee63fc10f2c12dd6c97bc77e72a024cdeb7
+
+            
+
             level1.AddPlatform(new Platform(2, -4, 1, 0.5f));
             level1.AddPlatform(new FinishPlatform(-2, -2.5f, 2, 1, levelManager));
 
             // Level 2: 30x8 world units
-            Level level2 = new Level("L2", 30f, 10f, new Vector2(30, 10));
+            Level level2 = new Level("L2", 30f, 10f, Vector2.Zero);
             level2.AddPlatform(new Platform(4, -4, 2, 1));
             level2.AddPlatform(new FinishPlatform(6, -4, 2, 1, levelManager));
             
-            Level level3 = new Level("L3", 50f, 20f, new Vector2(50, 15));
+            Level level3 = new Level("L3", 50f, 20f, Vector2.Zero);
             level3.AddPlatform(new Platform(-3.0f, -3.75f, 3, 1));
             level3.AddPlatform(new Platform(1, -2, 2, 1));
             level3.AddPlatform(new FinishPlatform(4, -0.5f, 3, 1, levelManager));
