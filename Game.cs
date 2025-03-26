@@ -11,17 +11,22 @@ namespace CiganSimulator
     public class Game : GameWindow
     {
         private string initialLevel;
-        private Vector2 playerPosition;
+        
+        private Vector2 playerPositioNOnScreen;// 0,0 for now
+        private Vector2 playerPosition; //world position
         private Vector2 playerVelocity;
         private float gravity = -9.80665f * 1.2f;
         public bool isGrounded = false;
         private float moveSpeedR = 0f;
         private float moveSpeedL = 0f;
         private float maxSpeed = 10.0f;
-        private float moveAcceleration = 0.01f;
+        private float moveAcceleration = 0.015f;
         private float jumpForce = 6.5f;
         private LevelManager levelManager;
         private Map map;
+        private Vector2 cameraPosition = new Vector2(0, 0f);
+        private float visibleHeight = 10f;
+        private float visibleWidth;
         private int shaderProgram;
         private int playerVAO;
         private int playerVBO;
@@ -49,8 +54,10 @@ namespace CiganSimulator
             base.OnLoad();
             GL.ClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
+            
             // Orthographic projection
-            projection = Matrix4.CreateOrthographic(10f, 10f, -1f, 1f);
+            float aspectRatio = Size.X / (float)Size.Y;
+            projection = Matrix4.CreateOrthographic(10f * aspectRatio, 10f, -1f, 1f);
 
             // Prepare shader
             string vertexShaderSource = @"
@@ -143,15 +150,7 @@ namespace CiganSimulator
                 if (moveSpeedR < 0) moveSpeedR = 0;
             }
 
-
-            // Jump
-            if (input.IsKeyDown(Keys.Up) && isGrounded)
-            {
-                playerVelocity.Y = jumpForce;
-                isGrounded = false;
-            }
-
-            
+            isGrounded = false;
             
             //goofy collision for every platform
             foreach (var platform in levelManager.CurrentLevel.Platforms)
@@ -173,25 +172,13 @@ namespace CiganSimulator
                     {
                         isGrounded = true;
                         playerVelocity.Y = 0;
-                        
                     }
                     else if(platform.IsCollidingWithPlayerFromBottom(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics(), ref playerPosition))
                     {
-                        
-                        
                         playerVelocity.Y = 0;
                     }
-                    
                 }
             }
-            
-            // Apply horizontal movement
-            playerPosition.X += (moveSpeedR - moveSpeedL) * (float)args.Time;
-            // Gravity
-            
-            playerPosition += playerVelocity * (float)args.Time;
-            playerVelocity.Y += gravity * (float)args.Time;
-
             // Ground collision
             if (playerPosition.Y <= -4.5f)
             {
@@ -199,8 +186,23 @@ namespace CiganSimulator
                 playerVelocity.Y = 0;
                 isGrounded = true;
             }
+            // Jump
+            if (input.IsKeyDown(Keys.Up) && isGrounded)
+            {   
+                playerVelocity.Y = jumpForce;
+                isGrounded = false;
+            }
 
-            // Switch levels with F1/F2 for demo
+            // Apply horizontal movement
+            playerPosition.X += (moveSpeedR - moveSpeedL) * (float)args.Time;
+            // Gravity
+            
+            playerPosition += playerVelocity * (float)args.Time;
+            playerVelocity.Y += gravity * (float)args.Time;
+
+            
+
+            // Switch levels with F1/F2/F3 for demo
             if (input.IsKeyPressed(Keys.F1))
             {
                 levelManager.SelectLevel("L1");
@@ -209,9 +211,16 @@ namespace CiganSimulator
             {
                 levelManager.SelectLevel("L2");
             }
-
+            if (input.IsKeyPressed(Keys.F3))
+            {
+                levelManager.SelectLevel("L3");
+            }
+            
             // Update map
             map.Update(Misc.ToSystemNumerics(playerPosition), Misc.ToSystemNumerics(playerVelocity));
+            Debug.WriteLine($"Player position: {playerPosition}");
+            // cameraPosition = playerPosition;
+            UpdateCameraPosition(args);
         }
 
         protected override void OnRenderFrame(FrameEventArgs args)
@@ -222,22 +231,61 @@ namespace CiganSimulator
             GL.UseProgram(shaderProgram);
             GL.UniformMatrix4(projectionUniformLocation, false, ref projection);
 
-            // Render player
-            GL.Uniform2(positionUniformLocation, playerPosition);
-            GL.Uniform2(GL.GetUniformLocation(shaderProgram, "uScale"), new Vector2(1.0f, 1.0f)); // Player is always 1x1
+            // Render player (subtract cameraPosition)
+            GL.Uniform2(positionUniformLocation, playerPosition - cameraPosition);
+            GL.Uniform2(GL.GetUniformLocation(shaderProgram, "uScale"), new Vector2(1.0f, 1.0f));
             GL.BindVertexArray(playerVAO);
             GL.DrawArrays(PrimitiveType.Triangles, 0, 6);
 
-            // Render current level’s platforms
+            // Render current level’s platforms (subtract cameraPosition)
             int scaleUniformLocation = GL.GetUniformLocation(shaderProgram, "uScale");
-            levelManager.CurrentLevel?.Render(playerVAO, positionUniformLocation, scaleUniformLocation);
+            foreach (var platform in levelManager.CurrentLevel.Platforms)
+            {
+                var platformPos = new Vector2(platform.x, platform.y) - cameraPosition;
+                GL.Uniform2(positionUniformLocation, platformPos);
+                GL.Uniform2(scaleUniformLocation, new Vector2(platform.width, platform.height));
+                
+                GL.BindVertexArray(playerVAO);
+                GL.DrawArrays(PrimitiveType.Triangles, 0, 6);
+            }
 
-            // Render map (if applicable)
+            // Render map (if applicable) – subtract cameraPosition if needed in map.Render
             map.Render(playerVAO);
 
             SwapBuffers();
         }
 
+
+        private void UpdateCameraPosition(FrameEventArgs args)
+        {
+            // cameraPosition = playerPosition;
+            float lerpSpeed = 2f;
+            cameraPosition += (playerPosition - cameraPosition) * lerpSpeed * (float)args.Time;
+            if(cameraPosition.X < 0.0f)
+            {
+                cameraPosition.X = 0.0f;
+            }
+            if(cameraPosition.X > levelManager.CurrentLevel.Width)
+            {
+                cameraPosition.X = levelManager.CurrentLevel.Width;
+            }
+
+            if(cameraPosition.Y < 0.0f)
+            {
+                cameraPosition.Y = 0.0f;
+            }
+            if(cameraPosition.Y > levelManager.CurrentLevel.Height)
+            {
+                cameraPosition.Y = levelManager.CurrentLevel.Height;
+            }
+            
+            {
+                //YES
+            }
+
+
+            Debug.WriteLine($"Camera position: {cameraPosition}");
+        }
         protected override void OnResize(ResizeEventArgs e)
         {
             base.OnResize(e);

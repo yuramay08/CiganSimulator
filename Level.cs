@@ -11,12 +11,14 @@ namespace CiganSimulator
         public List<Platform> Platforms { get; private set; }
         public float Width { get; }
         public float Height { get; }
+        public Vector2 SpawnPoint { get; }
 
-        public Level(string name, float width, float height)
+        public Level(string name, float width, float height, Vector2 spawnPoint)
         {
             LevelName = name;
             Width = width;
             Height = height;
+            SpawnPoint = spawnPoint;
             Platforms = new List<Platform>();
         }
 
@@ -59,16 +61,16 @@ namespace CiganSimulator
             var levelManager = new LevelManager();
 
             // Level 1: 20x10 world units, for instance
-            Level level1 = new Level("L1", 40f, 10f);
+            Level level1 = new Level("L1", 40f, 10f, new Vector2(40, 20));
             level1.AddPlatform(new Platform(-2, -2.5f, 2, 1));
             level1.AddPlatform(new Platform(2, -4, 1, 0.5f));
 
             // Level 2: 30x8 world units
-            Level level2 = new Level("L2", 30f, 10f);
+            Level level2 = new Level("L2", 30f, 10f, new Vector2(30, 10));
             level2.AddPlatform(new Platform(4, -4, 2, 1));
             level2.AddPlatform(new Platform(6, -4, 2, 1));
             
-            Level level3 = new Level("L3", 50f, 20f);
+            Level level3 = new Level("L3", 50f, 20f, new Vector2(50, 15));
             level3.AddPlatform(new Platform(-3.0f, -3.75f, 3, 1));
             level3.AddPlatform(new Platform(1, -1, 2, 1));
             level3.AddPlatform(new Platform(4, 1, 3, 1));

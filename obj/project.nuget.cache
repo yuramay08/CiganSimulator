@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "G4pqcuOnUUg=",
+  "dgSpecHash": "hTTE7hCUzVk=",
   "success": true,
   "projectFilePath": "c:\\Programovanie\\ROO\\CiganSimulator\\CiganSimulator.csproj",
   "expectedPackageFiles": [
@@ -17,12 +17,5 @@
     "C:\\Users\\yuram\\.nuget\\packages\\opentk.windowing.graphicslibraryframework\\4.9.3\\opentk.windowing.graphicslibraryframework.4.9.3.nupkg.sha512",
     "C:\\Users\\yuram\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file c:\\Programovanie\\ROO\\CiganSimulator\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
