@@ -30,11 +30,14 @@ namespace CiganSimulator
 
         private Matrix4 projection;
 
+        [Obsolete]
         public Game(int width, int height, string title, string startLevel)
         : base(GameWindowSettings.Default, new NativeWindowSettings()
         {
             Size = (width, height),
-            Title = title
+            Title = title,
+            WindowBorder = WindowBorder.Fixed, // Disable resizing
+            Flags = ContextFlags.Default
         })
         {
             playerPosition = new Vector2(-6.0f + -1.0f / 6.0f, -4.5f);//down left side of the screen if 800*600
@@ -66,7 +69,7 @@ namespace CiganSimulator
                 out vec4 FragColor;
                 void main()
                 {
-                    FragColor = vec4(1.0, 1.0, 0.0, 1.0);//dos colores
+                    FragColor = vec4(1.0, 0.0, 0.0, 1.0);//dos colores
                 }
             ";
 

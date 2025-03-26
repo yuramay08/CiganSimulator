@@ -60,7 +60,7 @@ namespace CiganSimulator
             //use after IsCollidingWithPlayer return true
             float halfPlayerW = playerSize.X * 0.5f;
             float halfPlayerH = playerSize.Y * 0.5f;
-            if(playerPos.Y + halfPlayerH >= y - height * 0.25f)//reserve pre rychle padanie
+            if(playerPos.Y + halfPlayerH >= y - height * 0.48f)
             {
                 playerPosition.Y = y - height * 0.5f - halfPlayerH;
                 return true;
@@ -72,13 +72,13 @@ namespace CiganSimulator
             //use after IsCollidingWithPlayer return true
             float halfPlayerW = playerSize.X * 0.5f;
             float halfPlayerH = playerSize.Y * 0.5f;
-            if(playerPos.X - halfPlayerW >= x + width * 0.48f)//reserve pre rychle padanie
+            if(playerPos.X - halfPlayerW >= x + width * 0.48f)//reserve pre rychly pohyb
             {
-                
+
                 playerPosition.X = x + width * 0.5f + halfPlayerH;
                 return true;
             }
-            else if(playerPos.X + halfPlayerW <= x - width * 0.48f)//reserve pre rychle padanie
+            else if(playerPos.X + halfPlayerW <= x - width * 0.48f)//reserve pre rychly pohyb
             {
                 playerPosition.X = x - width * 0.5f - halfPlayerH;
                 return true;
