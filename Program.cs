@@ -8,6 +8,7 @@ namespace CiganSimulator
 {
     class Program
     {
+        [Obsolete]
         static void Main()
         {
             using (Game game = new Game(800, 600, "Kradnut Zelezo", "L1")) //res of game window

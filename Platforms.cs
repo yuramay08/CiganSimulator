@@ -43,18 +43,18 @@ namespace CiganSimulator
 
             return xOverlap && yOverlap;
         }
-        public bool IsCollidingWithPlayerOnTop(Vector2 playerPos, Vector2 playerSize, ref OpenTK.Mathematics.Vector2 playerPosition)
+
+        public virtual bool IsCollidingWithPlayerOnTop(Vector2 playerPos, Vector2 playerSize, ref OpenTK.Mathematics.Vector2 playerPosition)
         {
-            //use after IsCollidingWithPlayer return true
-            float halfPlayerW = playerSize.X * 0.5f;
             float halfPlayerH = playerSize.Y * 0.5f;
-            if(playerPos.Y - halfPlayerH >= y - height * 0.25f)//reserve pre rychle padanie
+            if (playerPos.Y - halfPlayerH >= y - height * 0.25f)
             {
                 playerPosition.Y = y + height * 0.5f + halfPlayerH;
                 return true;
             }
             return false;
         }
+        
         public bool IsCollidingWithPlayerFromBottom(Vector2 playerPos, Vector2 playerSize,  ref OpenTK.Mathematics.Vector2 playerPosition)
         {
             //use after IsCollidingWithPlayer return true
@@ -67,6 +67,7 @@ namespace CiganSimulator
             }
             return false;
         }
+
         public bool IsCollidingWithPlayerFromSide(Vector2 playerPos, Vector2 playerSize,  ref OpenTK.Mathematics.Vector2 playerPosition)
         {
             //use after IsCollidingWithPlayer return true
@@ -81,6 +82,27 @@ namespace CiganSimulator
             else if(playerPos.X + halfPlayerW <= x - width * 0.48f)//reserve pre rychly pohyb
             {
                 playerPosition.X = x - width * 0.5f - halfPlayerH;
+                return true;
+            }
+            return false;
+        }
+    }
+
+    public class FinishPlatform : Platform
+    {
+        private LevelManager levelManager;
+
+        public FinishPlatform(float x, float y, float width, float height, LevelManager levelManager) : base(x, y, width, height)
+        {
+            this.levelManager = levelManager;
+        }
+
+        public override bool IsCollidingWithPlayerOnTop(Vector2 playerPos, Vector2 playerSize, ref OpenTK.Mathematics.Vector2 playerPosition)
+        {
+            if (base.IsCollidingWithPlayerOnTop(playerPos, playerSize, ref playerPosition))
+            {
+                Console.WriteLine("Level Complete!");
+                levelManager.GoToNextLevel(ref playerPosition);
                 return true;
             }
             return false;
