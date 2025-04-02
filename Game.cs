@@ -98,13 +98,14 @@ namespace CiganSimulator
             // Define quad vertices for rendering
             float[] vertices =
             {
-                -0.5f, -0.5f,
-                0.5f, -0.5f,
-                0.5f,  0.5f,
+                //v komentaroch je ako by to vyzeralo v normalnom svete ale je to cigansky kod pre cigan simulator
+                -0.5f, -0.5f,// 0,0
+                0.5f, -0.5f,// 1,0
+                0.5f,  0.5f,//1,1
 
-                -0.5f, -0.5f,
-                0.5f,  0.5f,
-                -0.5f,  0.5f
+                -0.5f, -0.5f,//0,0
+                0.5f,  0.5f,//1,1
+                -0.5f,  0.5f//0,1
             };
 
             playerVAO = GL.GenVertexArray();
@@ -170,6 +171,7 @@ namespace CiganSimulator
                     {
                         isGrounded = true;
                         playerVelocity.Y = 0;
+                        
                     }
                     else if(platform.IsCollidingWithPlayerFromBottom(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics(), ref playerPosition))
                     {

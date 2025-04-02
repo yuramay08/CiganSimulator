@@ -28,10 +28,10 @@ namespace CiganSimulator
 
         public void Update(Vector2 playerPosition, Vector2 playerVelocity)
         {
-            if (playerPosition.X > 5f)
-            {
-                mapOffset.X -= playerVelocity.X * 0.1f;
-            }
+            // if (playerPosition.X > 5f)
+            // {
+            //     mapOffset.X -= playerVelocity.X * 0.1f;
+            // }
         }
 
         public void Render(int vao)

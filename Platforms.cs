@@ -99,6 +99,7 @@ namespace CiganSimulator
 
         public override bool IsCollidingWithPlayerOnTop(Vector2 playerPos, Vector2 playerSize, ref OpenTK.Mathematics.Vector2 playerPosition)
         {
+            Console.WriteLine("Overwritten?");
             if (base.IsCollidingWithPlayerOnTop(playerPos, playerSize, ref playerPosition))
             {
                 Console.WriteLine("Level Complete!");
