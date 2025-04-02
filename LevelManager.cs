@@ -21,7 +21,7 @@ namespace CiganSimulator
             if (levels.ContainsKey(levelName))
             {
                 CurrentLevel = levels[levelName];
-                playerPosition = new OpenTK.Mathematics.Vector2(-6.0f + 3.0f / 6.0f, -4.5f);
+                playerPosition = new OpenTK.Mathematics.Vector2(-6.0f + 3.0f / 6.0f, -3f);
 
                 Console.WriteLine($"Selected level: {levelName}");
             }
@@ -29,6 +29,11 @@ namespace CiganSimulator
             {
                 Console.WriteLine($"Level {levelName} not found.");
             }
+        }
+
+        public void RestartLevel(ref OpenTK.Mathematics.Vector2 playerPosition)
+        {
+            SelectLevel(CurrentLevel.LevelName, ref playerPosition);
         }
 
         public void GoToNextLevel(ref OpenTK.Mathematics.Vector2 playerPosition)
