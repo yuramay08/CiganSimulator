@@ -54,6 +54,16 @@ namespace CiganSimulator
             }
             return false;
         }
+        public virtual bool IsCollidingWithPlayerOnTop(Vector2 playerPos, Vector2 playerSize, ref OpenTK.Mathematics.Vector2 playerPosition, bool edge)
+        {
+            float halfPlayerH = playerSize.Y * 0.5f;
+            if (playerPos.Y - halfPlayerH >= y - height * 0.45f)
+            {
+                // playerPosition.Y = y + height * 0.5f + halfPlayerH;
+                return true;
+            }
+            return false;
+        }
         
         public bool IsCollidingWithPlayerFromBottom(Vector2 playerPos, Vector2 playerSize,  ref OpenTK.Mathematics.Vector2 playerPosition)
         {
@@ -69,6 +79,25 @@ namespace CiganSimulator
         }
 
         public bool IsCollidingWithPlayerFromSide(Vector2 playerPos, Vector2 playerSize,  ref OpenTK.Mathematics.Vector2 playerPosition)
+        {
+            //use after IsCollidingWithPlayer return true
+            float halfPlayerW = playerSize.X * 0.5f;
+            float halfPlayerH = playerSize.Y * 0.5f;
+            if(playerPos.X - halfPlayerW >= x + width * 0.48f)//reserve pre rychly pohyb
+            {
+
+                playerPosition.X = x + width * 0.5f + halfPlayerH;
+                return true;
+            }
+            else if(playerPos.X + halfPlayerW <= x - width * 0.48f)//reserve pre rychly pohyb
+            {
+                playerPosition.X = x - width * 0.5f - halfPlayerH;
+                return true;
+            }
+            return false;
+            
+        }
+        public bool IsCollidingWithPlayerFromSide(Vector2 playerPos, Vector2 playerSize,  ref OpenTK.Mathematics.Vector2 playerPosition, bool edge)
         {
             //use after IsCollidingWithPlayer return true
             float halfPlayerW = playerSize.X * 0.5f;

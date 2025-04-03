@@ -11,7 +11,9 @@ namespace CiganSimulator
     public class Game : GameWindow
     {
         private string initialLevel;
-        
+        private double totalTime = 0;
+        private int frameCount = 0;
+        private int currentFPS = 0;
         private Vector2 playerPositioNOnScreen;// 0,0 for now
         private Vector2 playerPosition; //world position
         private Vector2 playerVelocity;
@@ -20,7 +22,7 @@ namespace CiganSimulator
         private float moveSpeedR = 0f;
         private float moveSpeedL = 0f;
         private float maxSpeed = 10.0f;
-        private float moveAcceleration = 0.015f;
+        private float moveAcceleration = 0.03f;
         private float jumpForce = 6.5f;
         private LevelManager levelManager;
         private Map map;
@@ -53,7 +55,7 @@ namespace CiganSimulator
         {
             base.OnLoad();
             GL.ClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-
+            VSync = VSyncMode.On;
             
             // Orthographic projection
             float aspectRatio = Size.X / (float)Size.Y;
@@ -160,6 +162,13 @@ namespace CiganSimulator
                 OpenTK.Mathematics.Vector2 playerSize = new OpenTK.Mathematics.Vector2(1.0f, 1.0f);
                 if (platform.IsCollidingWithPlayer(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics()))
                 {
+                    OpenTK.Mathematics.Vector2 fakeposition = playerPosition;
+                    if(platform.IsCollidingWithPlayerFromSide(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics(), ref fakeposition)
+                    && platform.IsCollidingWithPlayerOnTop(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics(), ref fakeposition) )
+                    {
+                        isGrounded = false;
+                        continue;
+                    }
                     if(platform.IsCollidingWithPlayerFromSide(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics(), ref playerPosition))
                     {
                         playerVelocity.X = 0;
@@ -179,6 +188,7 @@ namespace CiganSimulator
                     }
                 }
             }
+            
             // Ground collision
             if (playerPosition.Y <= -4.5f)
             {
@@ -193,7 +203,41 @@ namespace CiganSimulator
                 isGrounded = false;
             }
 
+            
             // Apply horizontal movement
+            float positionXAfter = playerPosition.X + (moveSpeedR - moveSpeedL) * (float)args.Time;
+            Vector2 fakePosition = new Vector2(positionXAfter, playerPosition.Y);
+            foreach (var platform in levelManager.CurrentLevel.Platforms)
+            {
+                // Convert player position and size to System.Numerics.Vector2 before calling the collision check
+                OpenTK.Mathematics.Vector2 playerSize = new OpenTK.Mathematics.Vector2(1.0f, 1.0f);
+                if (platform.IsCollidingWithPlayer(new Vector2(positionXAfter, playerPosition.Y).ToSystemNumerics(), playerSize.ToSystemNumerics())) //java 👌👌👌
+                {
+                    if(platform.IsCollidingWithPlayerOnTop(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics(), ref fakePosition) 
+                    && platform.IsCollidingWithPlayerFromSide(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics(), ref fakePosition))
+                    {
+                        isGrounded = false;
+
+                        continue;
+                    }
+                    else if(platform.IsCollidingWithPlayerFromSide(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics(), ref fakePosition))
+                    {
+                        playerVelocity.X = 0;
+                        moveSpeedL = 0;
+                        moveSpeedR = 0;
+                        Debug.WriteLine("Side collision");
+                    }
+                    else if(platform.IsCollidingWithPlayerOnTop(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics(), ref fakePosition))
+                    {
+                        isGrounded = true;
+                        playerVelocity.Y = 0;
+                    }
+                    else if(platform.IsCollidingWithPlayerFromBottom(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics(), ref fakePosition))
+                    {
+                        playerVelocity.Y = 0;
+                    }
+                }
+            }
             playerPosition.X += (moveSpeedR - moveSpeedL) * (float)args.Time;
             // Gravity
             
@@ -216,7 +260,7 @@ namespace CiganSimulator
             }
             
             // Update map
-            map.Update(Misc.ToSystemNumerics(playerPosition), Misc.ToSystemNumerics(playerVelocity));
+            // map.Update(Misc.ToSystemNumerics(playerPosition), Misc.ToSystemNumerics(playerVelocity));
             Debug.WriteLine($"Player position: {playerPosition}");
             // cameraPosition = playerPosition;
             UpdateCameraPosition(args);
@@ -225,6 +269,22 @@ namespace CiganSimulator
         protected override void OnRenderFrame(FrameEventArgs args)
         {
             base.OnRenderFrame(args);
+            frameCount++;
+            totalTime += args.Time;
+            
+            // Update FPS value once per second
+            if (totalTime >= 1.0)
+            {
+                currentFPS = frameCount;
+                frameCount = 0;
+                totalTime = 0;
+                
+                // Update window title with FPS
+                Title = $"CiganSimulator - FPS: {currentFPS}";
+                
+                // Or log to console/debug
+                Debug.WriteLine($"Current FPS: {currentFPS}");
+            }
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
             GL.UseProgram(shaderProgram);
@@ -258,7 +318,7 @@ namespace CiganSimulator
         private void UpdateCameraPosition(FrameEventArgs args)
         {
             // cameraPosition = playerPosition;
-            float lerpSpeed = 2f;
+            float lerpSpeed = 3f;
             cameraPosition += (playerPosition - cameraPosition) * lerpSpeed * (float)args.Time;
             if(cameraPosition.X < 0.0f)
             {
