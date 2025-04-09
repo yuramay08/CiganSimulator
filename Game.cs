@@ -78,7 +78,7 @@ namespace CiganSimulator
                 out vec4 FragColor;
                 void main()
                 {
-                    FragColor = vec4(1.0, 0.0, 0.0, 1.0);//dos colores
+                    FragColor = vec4(1.0, 1.0, 1.0, 1.0);//dos colores
                 }
             ";
 
@@ -178,6 +178,15 @@ namespace CiganSimulator
                     }
                     else if(platform.IsCollidingWithPlayerOnTop(playerPosition.ToSystemNumerics(), playerSize.ToSystemNumerics(), ref playerPosition))
                     {
+                        if(platform is Void)
+                        {
+                            levelManager.RestartLevel(ref playerPosition);
+                            playerVelocity = Vector2.Zero;
+                            moveSpeedL = 0.0f;
+                            moveSpeedR = 0.0f;
+                            isGrounded = false;
+                            continue;
+                        }
                         isGrounded = true;
                         playerVelocity.Y = 0;
                         

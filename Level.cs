@@ -70,7 +70,7 @@ namespace CiganSimulator
 
             // Level 1
             Level level1 = new Level("L1", 100f, 10f, Vector2.Zero);
-            level1.AddPlatform(new Void(0, -4.75f, level1.Width, 0.5f, levelManager)); //neviem preco to nezabere celu sirku levelu
+            level1.AddPlatform(new Void(level1.Width / 2, -4.75f, level1.Width + 10.0f, 0.5f, levelManager)); //neviem preco to nezabere celu sirku levelu
             level1.AddPlatform(new Platform(-4.25f, -4, 5, 5));
 
             level1.AddPlatform(new Platform(3, -2, 2, 1));
@@ -91,7 +91,7 @@ namespace CiganSimulator
 
             // Level 2
             Level level2 = new Level("L2", 80f, 10f, Vector2.Zero);
-            level2.AddPlatform(new Void(0, -4.75f, level2.Width, 0.5f, levelManager));
+            level2.AddPlatform(new Void(level2.Width / 2, -4.75f, level2.Width + 10.0f, 0.5f, levelManager));
             level2.AddPlatform(new Platform(-4.25f, -4, 5, 5));
 
             level2.AddPlatform(new Platform(4, -3, 2, 1));  
@@ -111,7 +111,7 @@ namespace CiganSimulator
 
             // Level 3
             Level level3 = new Level("L3", 100f, 20f, Vector2.Zero);
-            level3.AddPlatform(new Void(0, -4.75f, level3.Width, 0.5f, levelManager));
+            level3.AddPlatform(new Void(level3.Width / 2, -4.75f, level3.Width + 10.0f, 0.5f, levelManager));
             level3.AddPlatform(new Platform(-4.25f, -4, 5, 5));
 
             level3.AddPlatform(new Platform(6, -2.5f, 2, 1));  
